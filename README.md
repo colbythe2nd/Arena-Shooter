@@ -1,2 +1,3 @@
-# Arena-Shooter-Final
-Final project using Phaser
+# Arena-Shooter
+
+Phaser.js project :)
