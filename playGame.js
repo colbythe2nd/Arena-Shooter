@@ -16,14 +16,30 @@ class playGame extends Phaser.Scene {
     this.waveTimer = 0;
 
     this.gameIsActive = true;
+
+    this.regularFont = {
+      fontFamily: 'font1',
+      fontSize: 24,
+      strokeThickness: 0,
+      shadow: { stroke: true, fill: true, blur: 0, offsetX: 2, offsetY: 2, color: '#000000' },
+      align: 'right',
+    }
+    this.scoreFont = {
+      fontFamily: 'font1',
+      fontSize: 48,
+      strokeThickness: 0,
+      shadow: { stroke: true, fill: true, blur: 0, offsetX: 2, offsetY: 2, color: '#000000' },
+      align: 'right',
+    }
     //Setting background image
     this.background = this.add.image(0, 0, "background")
     this.background.setOrigin(0,0)
+
 //Hud Creation
-    this.textBox = this.add.text(20, 20, "");
-    this.textBox2 = this.add.text(20, 40, "Wave");
-    this.textBox3 = this.add.text(20, 60, "Score");
-    this.textBox4 = this.add.text(20, 80, "Health");
+    this.enemiesBox = this.add.text(20, 20, "", this.regularFont);
+    this.waveBox = this.add.text(20, 40, "Wave", this.regularFont);
+    this.scoreBox = this.add.text(config.width - 90, 5, "0", this.scoreFont);
+    this.healthBox = this.add.text(20, 60, "Health", this.regularFont);
 //Player physics
     this.player = this.physics.add.sprite(config.width / 2 - 8, config.height - 64, "player");
     //Keyboard input WASD addition
@@ -100,13 +116,15 @@ class playGame extends Phaser.Scene {
       );
       this.angleVelocityDeg = (this.angleVelocity * 180) / Math.PI;
       //Menu Update
-      this.textBox.setText("Enemies Left: " + this.enemies.countActive(true));
-      this.textBox2.setText("Wave: " + this.wave);
-      this.textBox3.setText("Score: " + this.score);
-      this.textBox4.setText("Health: " + this.health);
+      this.enemiesBox.setText("Enemies Left: " + this.enemies.countActive(true));
+      this.waveBox.setText("Wave: " + this.wave);
+      this.scoreBox.setText(this.score);
+      this.scoreBox.x = config.width - 20 - (this.scoreBox.width);
+      this.healthBox.setText("Health: " + this.health);
       //Player Manager
       this.movePlayerManager();
       this.rotatePlayer();
+
     }
 
   }
