@@ -6,7 +6,7 @@ var config = {
   width: 800,
   height: 600,
   parent: 'game',
-  //autoCenter: Phaser.Scale.CENTER_BOTH,
+  autoCenter: Phaser.Scale.CENTER_BOTH,
   backgroundColor: 0x000000,
   scene: [loadGame, titleScreen, playGame],
   pixelArt: true,
