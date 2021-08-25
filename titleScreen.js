@@ -16,7 +16,12 @@ class titleScreen extends Phaser.Scene {
     //Player high score from local storage
     if(localStorage.getItem('arenaShooterHighScore') !== null){
       this.highScoreToDisplay = parseInt(localStorage.getItem('arenaShooterHighScore'));
-      this.gameOverText = this.add.text(380, 270, this.highScoreToDisplay.toString(), {font: "16pt Arial", fill: "#000000"});
+      this.gameOverText = this.add.text(config.width / 2 - 30, 270, this.highScoreToDisplay.toString(), {
+        fontFamily: 'font1',
+        fontSize: 24,
+        color: '#000000',
+        strokeThickness: 0,
+      });
     }
     
     

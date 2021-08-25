@@ -36,10 +36,12 @@ class playGame extends Phaser.Scene {
     this.background.setOrigin(0,0)
 
 //Hud Creation
-    this.enemiesBox = this.add.text(20, 20, "", this.regularFont);
-    this.waveBox = this.add.text(20, 40, "Wave", this.regularFont);
+    this.enemiesBox = this.add.text(48, 70, "", this.regularFont);
+    this.waveBox = this.add.text(20, 47, "Level", this.regularFont);
     this.scoreBox = this.add.text(config.width - 90, 5, "0", this.scoreFont);
-    this.healthBox = this.add.text(20, 60, "Health", this.regularFont);
+    this.healthIcons = this.add.group();
+    this.renderHealth();
+    this.skull = this.add.image(30, 82, "skull");
 //Player physics
     this.player = this.physics.add.sprite(config.width / 2 - 8, config.height - 64, "player");
     //Keyboard input WASD addition
@@ -116,11 +118,10 @@ class playGame extends Phaser.Scene {
       );
       this.angleVelocityDeg = (this.angleVelocity * 180) / Math.PI;
       //Menu Update
-      this.enemiesBox.setText("Enemies Left: " + this.enemies.countActive(true));
-      this.waveBox.setText("Wave: " + this.wave);
+      this.enemiesBox.setText("x " + this.enemies.countActive(true));
+      this.waveBox.setText("Level " + this.wave);
       this.scoreBox.setText(this.score);
       this.scoreBox.x = config.width - 20 - (this.scoreBox.width);
-      this.healthBox.setText("Health: " + this.health);
       //Player Manager
       this.movePlayerManager();
       this.rotatePlayer();
@@ -211,6 +212,7 @@ class playGame extends Phaser.Scene {
         this.invulnerable = true;
         setTimeout(() => { this.invulnerable = false; }, 300);
       }
+      this.renderHealth();
     }
   }
 //End game
@@ -227,6 +229,11 @@ class playGame extends Phaser.Scene {
     setTimeout(() => { this.scene.start("titleScreen"); }, 2000);
   }
 
-}
+  renderHealth() {
+    this.healthIcons.clear(true, true);
+    for (var i = 0; i < this.health; i++) {
+      var healthIcon = this.healthIcons.create(35 + (i * 15), 30, "healthIcon");
+    }
+  }
 
- 
+}

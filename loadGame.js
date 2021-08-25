@@ -9,6 +9,8 @@ class loadGame extends Phaser.Scene {
     this.load.spritesheet("enemy", "assets/EnemySprite.png", {frameWidth: 32, frameHeight: 64});
     //this.load.image("cursor", "assets/Reticle.png");
     //this.load.image('bullet', 'assets/Bullet.png');
+    this.load.image("skull", "assets/skull.png");
+    this.load.image("healthIcon", "assets/Health.png");
     this.load.spritesheet("bullet", "assets/Bullet_Friendly.png", {frameWidth: 32, frameHeight: 32});
     this.load.spritesheet("enemyBullet", "assets/Bullet_Enemy.png", {frameWidth: 32, frameHeight: 32});
     this.load.atlas('flares', 'assets/flares.png', 'assets/flares.json');
